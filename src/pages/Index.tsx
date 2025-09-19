@@ -80,22 +80,22 @@ const Index = () => {
                   <div className="absolute inset-0 bg-gradient-overlay" />
                   
                   <div className="relative z-10 flex items-center justify-center h-full px-4">
-                    <div className="text-center">
-                      <h1 className="text-4xl md:text-6xl font-bold bg-gradient-hero bg-clip-text text-transparent mb-4">
-                        {item.landmark}
-                      </h1>
-                      <p className="text-2xl md:text-3xl text-foreground/90 mb-8">
-                        {item.state}
-                      </p>
-                      <Button 
-                        onClick={() => navigate('/states')}
-                        variant="default"
-                        size="lg"
-                        className="bg-primary text-primary-foreground hover:bg-primary/90 px-8 py-3 text-lg font-semibold shadow-glow"
-                      >
-                        Explore {item.state}
-                      </Button>
-                    </div>
+                  <div className="text-center">
+                    <h1 className="text-4xl md:text-6xl font-bold bg-gradient-hero bg-clip-text text-transparent mb-8">
+                      Incredible India
+                    </h1>
+                    <p className="text-lg md:text-xl text-foreground/90 mb-8 max-w-2xl mx-auto">
+                      Discover the diverse beauty and rich heritage of India's magnificent states
+                    </p>
+                    <Button 
+                      onClick={() => navigate('/states')}
+                      variant="default"
+                      size="lg"
+                      className="bg-primary text-primary-foreground hover:bg-primary/90 px-8 py-3 text-lg font-semibold shadow-glow"
+                    >
+                      Start Your Journey
+                    </Button>
+                  </div>
                   </div>
                 </div>
               </CarouselItem>

@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Card } from '@/components/ui/card';
-import { MessageCircle, X, Send } from 'lucide-react';
+import { MessageCircle, X, Send, Mic, MicOff } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { useConversation } from '@11labs/react';
 
 interface Message {
   id: number;
@@ -17,12 +18,45 @@ const ChatBot = () => {
   const [messages, setMessages] = useState<Message[]>([
     {
       id: 1,
-      text: "Hi traveler, I'm your smart assistant. Ask me anything about your trip!",
+      text: "Hi traveler, I'm your voice-enabled smart assistant. You can type or click the microphone to talk to me about your trip!",
       isUser: false,
       timestamp: new Date(),
     },
   ]);
   const [inputText, setInputText] = useState('');
+  const [isListening, setIsListening] = useState(false);
+
+  // ElevenLabs Conversation setup
+  const conversation = useConversation({
+    onConnect: () => {
+      console.log('Voice AI connected');
+      setIsListening(true);
+    },
+    onDisconnect: () => {
+      console.log('Voice AI disconnected');
+      setIsListening(false);
+    },
+    onMessage: (message) => {
+      // Handle voice messages
+      const voiceMessage: Message = {
+        id: Date.now(),
+        text: message.message || 'Voice response received',
+        isUser: false,
+        timestamp: new Date(),
+      };
+      setMessages(prev => [...prev, voiceMessage]);
+    },
+    onError: (error) => {
+      console.error('Voice AI error:', error);
+      const errorMessage: Message = {
+        id: Date.now(),
+        text: 'Sorry, I had trouble with the voice connection. Please try typing your message.',
+        isUser: false,
+        timestamp: new Date(),
+      };
+      setMessages(prev => [...prev, errorMessage]);
+    }
+  });
 
   const handleSendMessage = () => {
     if (!inputText.trim()) return;
@@ -38,13 +72,34 @@ const ChatBot = () => {
     // Add bot reply
     const botMessage: Message = {
       id: Date.now() + 1,
-      text: "Smart suggestion will appear here",
+      text: "Smart suggestion will appear here (Voice AI will be available once configured)",
       isUser: false,
       timestamp: new Date(),
     };
 
     setMessages(prev => [...prev, userMessage, botMessage]);
     setInputText('');
+  };
+
+  const toggleVoiceChat = async () => {
+    try {
+      if (conversation.status === 'connected') {
+        await conversation.endSession();
+        setIsListening(false);
+      } else {
+        // Note: You'll need to provide a valid agent ID or signed URL
+        // For now, we'll show a message to configure the voice AI
+        const configMessage: Message = {
+          id: Date.now(),
+          text: "Voice AI needs to be configured with ElevenLabs credentials. Please contact the developer to set up voice functionality.",
+          isUser: false,
+          timestamp: new Date(),
+        };
+        setMessages(prev => [...prev, configMessage]);
+      }
+    } catch (error) {
+      console.error('Voice toggle error:', error);
+    }
   };
 
   const handleKeyPress = (e: React.KeyboardEvent) => {
@@ -118,11 +173,23 @@ const ChatBot = () => {
           {/* Input Area */}
           <div className="border-t border-border p-4">
             <div className="flex gap-2">
+              <Button
+                onClick={toggleVoiceChat}
+                size="icon"
+                variant={isListening ? "default" : "outline"}
+                className={cn(
+                  "shrink-0",
+                  isListening && "bg-red-500 hover:bg-red-600 text-white"
+                )}
+                title={isListening ? "Stop voice chat" : "Start voice chat"}
+              >
+                {isListening ? <MicOff className="h-4 w-4" /> : <Mic className="h-4 w-4" />}
+              </Button>
               <Input
                 value={inputText}
                 onChange={(e) => setInputText(e.target.value)}
                 onKeyPress={handleKeyPress}
-                placeholder="Ask me about your trip..."
+                placeholder="Type or use voice to ask about your trip..."
                 className="flex-1"
               />
               <Button
