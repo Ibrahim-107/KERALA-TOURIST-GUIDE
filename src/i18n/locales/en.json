@@ -1,0 +1,41 @@
+{
+  "nav": {
+    "incredibleIndia": "Incredible India",
+    "home": "Home",
+    "states": "States",
+    "kerala": "Kerala",
+    "trivandrum": "Trivandrum"
+  },
+  "hero": {
+    "startJourney": "Start Your Journey",
+    "welcomeMessage": "Discover the incredible beauty and diversity of India"
+  },
+  "stats": {
+    "states": "States & UTs",
+    "statesCount": "28+",
+    "touristPlaces": "Tourist Places",
+    "touristPlacesCount": "1000+",
+    "hotels": "Hotels & Stays",
+    "hotelsCount": "50,000+"
+  },
+  "chat": {
+    "aiAgent": "AI Agent",
+    "smartAssistant": "Smart Assistant",
+    "welcomeBot": "Hi traveler, I'm your smart assistant. Ask me anything about your trip!",
+    "placeholder": "Type your message...",
+    "send": "Send",
+    "voiceChat": "Voice Chat",
+    "stopVoice": "Stop Voice",
+    "smartSuggestion": "Smart suggestion will appear here",
+    "listening": "Listening...",
+    "configureElevenLabs": "Please configure your ElevenLabs API key to use voice features."
+  },
+  "languages": {
+    "language": "Language",
+    "english": "English",
+    "malayalam": "Malayalam",
+    "tamil": "Tamil", 
+    "arabic": "Arabic",
+    "hindi": "Hindi"
+  }
+}

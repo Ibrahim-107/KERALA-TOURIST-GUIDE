@@ -1,0 +1,41 @@
+{
+  "nav": {
+    "incredibleIndia": "الهند المذهلة",
+    "home": "الرئيسية",
+    "states": "الولايات",
+    "kerala": "كيرالا",
+    "trivandrum": "تريفاندرم"
+  },
+  "hero": {
+    "startJourney": "ابدأ رحلتك",
+    "welcomeMessage": "اكتشف الجمال والتنوع المذهل في الهند"
+  },
+  "stats": {
+    "states": "الولايات والأقاليم",
+    "statesCount": "28+",
+    "touristPlaces": "الأماكن السياحية",
+    "touristPlacesCount": "1000+",
+    "hotels": "الفنادق والإقامة",
+    "hotelsCount": "50,000+"
+  },
+  "chat": {
+    "aiAgent": "وكيل الذكاء الاصطناعي",
+    "smartAssistant": "المساعد الذكي",
+    "welcomeBot": "مرحباً أيها المسافر، أنا مساعدك الذكي. اسألني أي شيء عن رحلتك!",
+    "placeholder": "اكتب رسالتك...",
+    "send": "إرسال",
+    "voiceChat": "الدردشة الصوتية",
+    "stopVoice": "إيقاف الصوت",
+    "smartSuggestion": "سيظهر الاقتراح الذكي هنا",
+    "listening": "أستمع...",
+    "configureElevenLabs": "يرجى تكوين مفتاح ElevenLabs API الخاص بك لاستخدام ميزات الصوت."
+  },
+  "languages": {
+    "language": "اللغة",
+    "english": "الإنجليزية",
+    "malayalam": "المالايالامية",
+    "tamil": "التاميل",
+    "arabic": "العربية",
+    "hindi": "الهندية"
+  }
+}

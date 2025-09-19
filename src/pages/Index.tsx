@@ -4,6 +4,8 @@ import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious
 import { Card } from "@/components/ui/card";
 import Autoplay from "embla-carousel-autoplay";
 import React from "react";
+import { useTranslation } from "react-i18next";
+import LanguageSwitcher from "@/components/LanguageSwitcher";
 
 // Import state landmark images
 import tajMahal from "@/assets/states/uttar-pradesh-taj-mahal.jpg";
@@ -51,6 +53,7 @@ const indianStatesLandmarks = [
 
 const Index = () => {
   const navigate = useNavigate();
+  const { t } = useTranslation();
   
   const plugin = React.useRef(
     Autoplay({ delay: 3000, stopOnInteraction: true })
@@ -58,6 +61,11 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      {/* Language Switcher */}
+      <div className="absolute top-4 right-4 z-50">
+        <LanguageSwitcher />
+      </div>
+      
       {/* Hero Section with States Carousel */}
       <div className="relative min-h-screen overflow-hidden">
         <div className="absolute inset-0 bg-gradient-overlay" />
@@ -79,24 +87,24 @@ const Index = () => {
                   />
                   <div className="absolute inset-0 bg-gradient-overlay" />
                   
-                  <div className="relative z-10 flex items-center justify-center h-full px-4">
-                  <div className="text-center">
-                    <h1 className="text-4xl md:text-6xl font-bold bg-gradient-hero bg-clip-text text-transparent mb-8">
-                      Incredible India
-                    </h1>
-                    <p className="text-lg md:text-xl text-foreground/90 mb-8 max-w-2xl mx-auto">
-                      Discover the diverse beauty and rich heritage of India's magnificent states
-                    </p>
-                    <Button 
-                      onClick={() => navigate('/states')}
-                      variant="default"
-                      size="lg"
-                      className="bg-primary text-primary-foreground hover:bg-primary/90 px-8 py-3 text-lg font-semibold shadow-glow"
-                    >
-                      Start Your Journey
-                    </Button>
-                  </div>
-                  </div>
+                   <div className="relative z-10 flex items-center justify-center h-full px-4">
+                   <div className="text-center">
+                     <h1 className="text-4xl md:text-6xl font-bold bg-gradient-hero bg-clip-text text-transparent mb-8">
+                       {t('nav.incredibleIndia')}
+                     </h1>
+                     <p className="text-lg md:text-xl text-foreground/90 mb-8 max-w-2xl mx-auto">
+                       {t('hero.welcomeMessage')}
+                     </p>
+                     <Button 
+                       onClick={() => navigate('/states')}
+                       variant="default"
+                       size="lg"
+                       className="bg-primary text-primary-foreground hover:bg-primary/90 px-8 py-3 text-lg font-semibold shadow-glow"
+                     >
+                       {t('hero.startJourney')}
+                     </Button>
+                   </div>
+                   </div>
                 </div>
               </CarouselItem>
             ))}
@@ -111,16 +119,16 @@ const Index = () => {
         <div className="max-w-6xl mx-auto">
           <div className="grid md:grid-cols-3 gap-8">
             <div className="text-center p-6 bg-gradient-card rounded-lg shadow-card">
-              <div className="text-4xl font-bold text-primary mb-2">28</div>
-              <div className="text-lg text-foreground/80">States & UTs</div>
+              <div className="text-4xl font-bold text-primary mb-2">{t('stats.statesCount')}</div>
+              <div className="text-lg text-foreground/80">{t('stats.states')}</div>
             </div>
             <div className="text-center p-6 bg-gradient-card rounded-lg shadow-card">
-              <div className="text-4xl font-bold text-accent mb-2">1000+</div>
-              <div className="text-lg text-foreground/80">Tourist Places</div>
+              <div className="text-4xl font-bold text-accent mb-2">{t('stats.touristPlacesCount')}</div>
+              <div className="text-lg text-foreground/80">{t('stats.touristPlaces')}</div>
             </div>
             <div className="text-center p-6 bg-gradient-card rounded-lg shadow-card">
-              <div className="text-4xl font-bold text-primary mb-2">5000+</div>
-              <div className="text-lg text-foreground/80">Hotels & Stays</div>
+              <div className="text-4xl font-bold text-primary mb-2">{t('stats.hotelsCount')}</div>
+              <div className="text-lg text-foreground/80">{t('stats.hotels')}</div>
             </div>
           </div>
         </div>

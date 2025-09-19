@@ -5,6 +5,7 @@ import { Card } from '@/components/ui/card';
 import { MessageCircle, X, Send, Mic, MicOff } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { useConversation } from '@11labs/react';
+import { useTranslation } from 'react-i18next';
 
 interface Message {
   id: number;
@@ -14,17 +15,21 @@ interface Message {
 }
 
 const ChatBot = () => {
+  const { t } = useTranslation();
   const [isOpen, setIsOpen] = useState(false);
-  const [messages, setMessages] = useState<Message[]>([
-    {
-      id: 1,
-      text: "Hi traveler, I'm your voice-enabled smart assistant. You can type or click the microphone to talk to me about your trip!",
-      isUser: false,
-      timestamp: new Date(),
-    },
-  ]);
+  const [messages, setMessages] = useState<Message[]>([]);
   const [inputText, setInputText] = useState('');
   const [isListening, setIsListening] = useState(false);
+
+  // Initialize welcome message after translation is loaded
+  React.useEffect(() => {
+    setMessages([{
+      id: 1,
+      text: t('chat.welcomeBot'),
+      isUser: false,
+      timestamp: new Date(),
+    }]);
+  }, [t]);
 
   // ElevenLabs Conversation setup
   const conversation = useConversation({
@@ -72,7 +77,7 @@ const ChatBot = () => {
     // Add bot reply
     const botMessage: Message = {
       id: Date.now() + 1,
-      text: "Smart suggestion will appear here (Voice AI will be available once configured)",
+      text: t('chat.smartSuggestion'),
       isUser: false,
       timestamp: new Date(),
     };
@@ -91,7 +96,7 @@ const ChatBot = () => {
         // For now, we'll show a message to configure the voice AI
         const configMessage: Message = {
           id: Date.now(),
-          text: "Voice AI needs to be configured with ElevenLabs credentials. Please contact the developer to set up voice functionality.",
+          text: t('chat.configureElevenLabs'),
           isUser: false,
           timestamp: new Date(),
         };
@@ -122,7 +127,7 @@ const ChatBot = () => {
         size="icon"
       >
         <MessageCircle className="h-6 w-6" />
-        <span className="sr-only">Open AI Agent</span>
+        <span className="sr-only">{t('chat.aiAgent')}</span>
       </Button>
 
       {/* Chat Popup */}
@@ -135,7 +140,7 @@ const ChatBot = () => {
         <Card className="h-full flex flex-col bg-card border shadow-glow">
           {/* Header */}
           <div className="flex items-center justify-between p-4 border-b border-border">
-            <h3 className="font-semibold text-foreground">Smart Assistant</h3>
+            <h3 className="font-semibold text-foreground">{t('chat.smartAssistant')}</h3>
             <Button
               onClick={() => setIsOpen(false)}
               variant="ghost"
@@ -181,7 +186,7 @@ const ChatBot = () => {
                   "shrink-0",
                   isListening && "bg-red-500 hover:bg-red-600 text-white"
                 )}
-                title={isListening ? "Stop voice chat" : "Start voice chat"}
+                title={isListening ? t('chat.stopVoice') : t('chat.voiceChat')}
               >
                 {isListening ? <MicOff className="h-4 w-4" /> : <Mic className="h-4 w-4" />}
               </Button>
@@ -189,7 +194,7 @@ const ChatBot = () => {
                 value={inputText}
                 onChange={(e) => setInputText(e.target.value)}
                 onKeyPress={handleKeyPress}
-                placeholder="Type or use voice to ask about your trip..."
+                placeholder={t('chat.placeholder')}
                 className="flex-1"
               />
               <Button

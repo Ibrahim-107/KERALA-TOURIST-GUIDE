@@ -1,0 +1,41 @@
+{
+  "nav": {
+    "incredibleIndia": "अविश्वसनीय भारत",
+    "home": "होम",
+    "states": "राज्य",
+    "kerala": "केरल",
+    "trivandrum": "तिरुवनंतपुरम"
+  },
+  "hero": {
+    "startJourney": "अपनी यात्रा शुरू करें",
+    "welcomeMessage": "भारत की अविश्वसनीय सुंदरता और विविधता की खोज करें"
+  },
+  "stats": {
+    "states": "राज्य और केंद्र शासित प्रदेश",
+    "statesCount": "28+",
+    "touristPlaces": "पर्यटन स्थल",
+    "touristPlacesCount": "1000+",
+    "hotels": "होटल और रहने की जगह",
+    "hotelsCount": "50,000+"
+  },
+  "chat": {
+    "aiAgent": "एआई एजेंट",
+    "smartAssistant": "स्मार्ट असिस्टेंट",
+    "welcomeBot": "नमस्ते यात्री, मैं आपका स्मार्ट असिस्टेंट हूं। अपनी यात्रा के बारे में कुछ भी पूछें!",
+    "placeholder": "अपना संदेश टाइप करें...",
+    "send": "भेजें",
+    "voiceChat": "वॉयस चैट",
+    "stopVoice": "आवाज रोकें",
+    "smartSuggestion": "स्मार्ट सुझाव यहाँ दिखाई देगा",
+    "listening": "सुन रहा हूँ...",
+    "configureElevenLabs": "वॉयस फ़ीचर्स का उपयोग करने के लिए कृपया अपनी ElevenLabs API कीं कॉन्फ़िगर करें।"
+  },
+  "languages": {
+    "language": "भाषा",
+    "english": "अंग्रेजी",
+    "malayalam": "मलयालम",
+    "tamil": "तमिल",
+    "arabic": "अरबी",
+    "hindi": "हिंदी"
+  }
+}
