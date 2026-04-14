@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { useNavigate } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
+import { getDistrictSlug } from "@/data/districtData";
 import alleppeyBackwaters from "@/assets/kerala/alleppey-backwaters.jpg";
 
 const keralaDistricts = [
@@ -14,11 +15,7 @@ const KeralaDistricts = () => {
   const navigate = useNavigate();
 
   const handleDistrictClick = (district: string) => {
-    if (district === "Thiruvananthapuram") {
-      navigate('/trivandrum');
-    } else {
-      alert(`${district} page coming soon! Currently showing Thiruvananthapuram as example.`);
-    }
+    navigate(`/district/${getDistrictSlug(district)}`);
   };
 
   return (
@@ -46,9 +43,7 @@ const KeralaDistricts = () => {
               <div onClick={() => handleDistrictClick(district)} className="p-6 bg-gradient-card rounded-lg h-full flex items-center justify-center text-center">
                 <div>
                   <div className="text-lg font-semibold text-foreground group-hover:text-primary transition-colors">{district}</div>
-                  {district === "Thiruvananthapuram" && (
-                    <div className="text-sm text-accent mt-1 opacity-0 group-hover:opacity-100 transition-opacity">Click to explore →</div>
-                  )}
+                  <div className="text-sm text-accent mt-1 opacity-0 group-hover:opacity-100 transition-opacity">Click to explore →</div>
                 </div>
               </div>
             </Card>

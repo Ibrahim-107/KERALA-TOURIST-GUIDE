@@ -5,7 +5,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import KeralaDistricts from "./pages/KeralaDistricts";
-import TrivandrumFeatures from "./pages/TrivandrumFeatures";
+import DistrictDetail from "./pages/DistrictDetail";
 import PlaceDetail from "./pages/PlaceDetail";
 import NotFound from "./pages/NotFound";
 import ChatBot from "./components/ChatBot";
@@ -21,7 +21,7 @@ const App = () => (
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/districts" element={<KeralaDistricts />} />
-          <Route path="/trivandrum" element={<TrivandrumFeatures />} />
+          <Route path="/district/:districtSlug" element={<DistrictDetail />} />
           <Route path="/place/:placeId" element={<PlaceDetail />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
