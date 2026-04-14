@@ -4,7 +4,7 @@ import { Badge } from "@/components/ui/badge";
 import { useNavigate } from "react-router-dom";
 import { ArrowLeft, MapPin, Utensils, Calendar, Building, Bus } from "lucide-react";
 import StarRating from "@/components/StarRating";
-import keralaFood from "@/assets/kerala-food.jpg";
+import keralaFood from "@/assets/kerala/fort-kochi.jpg";
 
 interface Place {
   name: string;
@@ -161,7 +161,7 @@ const TrivandrumFeatures = () => {
           <Button 
             variant="ghost" 
             size="sm"
-            onClick={() => navigate('/kerala')}
+            onClick={() => navigate('/districts')}
           >
             <ArrowLeft className="w-4 h-4 mr-2" />
             Back to Kerala

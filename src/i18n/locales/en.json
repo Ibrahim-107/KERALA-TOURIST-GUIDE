@@ -1,27 +1,35 @@
 {
   "nav": {
-    "incredibleIndia": "Incredible India",
+    "exploreKerala": "Explore Kerala",
     "home": "Home",
-    "states": "States",
-    "kerala": "Kerala",
+    "districts": "Districts",
     "trivandrum": "Trivandrum"
   },
   "hero": {
     "startJourney": "Start Your Journey",
-    "welcomeMessage": "Discover the incredible beauty and diversity of India"
+    "welcomeMessage": "Discover the breathtaking beauty of God's Own Country",
+    "tagline": "God's Own Country"
   },
   "stats": {
-    "states": "States & UTs",
-    "statesCount": "28+",
+    "districts": "Districts",
+    "districtsCount": "14",
     "touristPlaces": "Tourist Places",
-    "touristPlacesCount": "1000+",
+    "touristPlacesCount": "500+",
     "hotels": "Hotels & Stays",
-    "hotelsCount": "50,000+"
+    "hotelsCount": "10,000+"
+  },
+  "explore": {
+    "title": "Explore Kerala",
+    "beaches": "Beaches",
+    "hillStations": "Hill Stations",
+    "waterfalls": "Waterfalls",
+    "backwaters": "Backwaters",
+    "temples": "Temples & Culture"
   },
   "chat": {
     "aiAgent": "AI Agent",
     "smartAssistant": "Smart Assistant",
-    "welcomeBot": "Hi traveler, I'm your smart assistant. Ask me anything about your trip!",
+    "welcomeBot": "Hi traveler, I'm your Kerala travel assistant. Ask me anything about Kerala!",
     "placeholder": "Type your message...",
     "send": "Send",
     "voiceChat": "Voice Chat",
@@ -34,7 +42,7 @@
     "language": "Language",
     "english": "English",
     "malayalam": "Malayalam",
-    "tamil": "Tamil", 
+    "tamil": "Tamil",
     "arabic": "Arabic",
     "hindi": "Hindi"
   }
