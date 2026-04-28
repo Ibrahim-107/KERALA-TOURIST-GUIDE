@@ -92,7 +92,11 @@ const Index = () => {
                 height={1080}
                 style={{ willChange: "transform" }}
               />
+              {/* Image tint: subtle teal/green wash + dark gradient for readability */}
+              <div className="absolute inset-0 bg-primary/15 mix-blend-multiply" />
+              <div className="absolute inset-0 bg-accent/10 mix-blend-overlay" />
               <div className="absolute inset-0 bg-gradient-overlay" />
+              <div className="absolute inset-0 bg-black/25" />
             </div>
           );
         })}
