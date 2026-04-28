@@ -1,8 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
-import { Carousel, CarouselContent, CarouselItem, CarouselPrevious, CarouselNext } from "@/components/ui/carousel";
 import { Card } from "@/components/ui/card";
-import Autoplay from "embla-carousel-autoplay";
 import React from "react";
 import { useTranslation } from "react-i18next";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
@@ -40,11 +38,28 @@ const Index = () => {
   const navigate = useNavigate();
   const { t } = useTranslation();
 
-  const plugin = React.useRef(
-    Autoplay({ delay: 4000, stopOnInteraction: false, stopOnMouseEnter: true })
-  );
-
+  // Cinematic slideshow: zoom-in then fade-to-black, then next image
+  const SLIDE_DURATION = 6000; // total per slide (ms)
+  const FADE_DURATION = 1200;  // black fade in/out (ms)
   const [currentSlide, setCurrentSlide] = React.useState(0);
+  const [phase, setPhase] = React.useState<"in" | "hold" | "out">("in");
+
+  React.useEffect(() => {
+    // fade in -> hold -> fade out -> next
+    setPhase("in");
+    const inTimer = setTimeout(() => setPhase("hold"), FADE_DURATION);
+    const outTimer = setTimeout(() => setPhase("out"), SLIDE_DURATION - FADE_DURATION);
+    const nextTimer = setTimeout(() => {
+      setCurrentSlide((s) => (s + 1) % heroSlides.length);
+    }, SLIDE_DURATION);
+    return () => {
+      clearTimeout(inTimer);
+      clearTimeout(outTimer);
+      clearTimeout(nextTimer);
+    };
+  }, [currentSlide]);
+
+  const blackoutOpacity = phase === "in" ? 0 : phase === "out" ? 1 : 0;
 
   return (
     <div className="min-h-screen bg-background">
@@ -53,74 +68,85 @@ const Index = () => {
         <LanguageSwitcher />
       </div>
 
-      {/* Hero Carousel */}
-      <div className="relative h-screen overflow-hidden">
-        <Carousel
-          plugins={[plugin.current]}
-          className="w-full h-screen"
-          opts={{ loop: true }}
-          onMouseEnter={plugin.current.stop}
-          onMouseLeave={plugin.current.reset}
-          setApi={(api) => {
-            api?.on("select", () => setCurrentSlide(api.selectedScrollSnap()));
-          }}
+      {/* Cinematic Hero Slideshow */}
+      <div className="relative h-screen overflow-hidden bg-black">
+        {heroSlides.map((slide, index) => {
+          const isActive = index === currentSlide;
+          return (
+            <div
+              key={index}
+              className="absolute inset-0"
+              style={{
+                opacity: isActive ? 1 : 0,
+                transition: "opacity 600ms ease-in-out",
+                zIndex: isActive ? 1 : 0,
+              }}
+              aria-hidden={!isActive}
+            >
+              <img
+                src={slide.image}
+                alt={slide.name}
+                className={`absolute inset-0 w-full h-full object-cover ${isActive ? "animate-ken-burns" : ""}`}
+                loading={index === 0 ? "eager" : "lazy"}
+                width={1920}
+                height={1080}
+                style={{ willChange: "transform" }}
+              />
+              <div className="absolute inset-0 bg-gradient-overlay" />
+            </div>
+          );
+        })}
+
+        {/* Foreground content */}
+        <div className="relative z-20 flex items-center justify-center h-full px-4 pointer-events-none">
+          <div className="text-center animate-fade-in-up pointer-events-auto">
+            <h1 className="text-5xl md:text-7xl font-bold bg-gradient-hero bg-clip-text text-transparent mb-4 drop-shadow-2xl">
+              {t('nav.exploreKerala')}
+            </h1>
+            <p className="text-lg md:text-2xl text-foreground/90 mb-2 font-light">
+              {t('hero.tagline')}
+            </p>
+            <p className="text-base md:text-lg text-foreground/70 mb-8 max-w-xl mx-auto">
+              {t('hero.welcomeMessage')}
+            </p>
+            <Button
+              onClick={() => navigate('/districts')}
+              size="lg"
+              className="bg-primary text-primary-foreground hover:bg-primary/90 px-10 py-4 text-lg font-semibold shadow-glow rounded-full"
+            >
+              {t('hero.startJourney')}
+            </Button>
+          </div>
+        </div>
+
+        {/* Slide caption */}
+        <div
+          className="absolute bottom-24 left-8 z-20 transition-opacity duration-700"
+          style={{ opacity: phase === "hold" ? 1 : 0 }}
         >
-          <CarouselContent>
-            {heroSlides.map((slide, index) => (
-              <CarouselItem key={index}>
-                <div className="relative h-screen">
-                  <img
-                    src={slide.image}
-                    alt={slide.name}
-                    className="absolute inset-0 w-full h-full object-cover"
-                    loading={index === 0 ? "eager" : "lazy"}
-                    width={1920}
-                    height={1080}
-                  />
-                  <div className="absolute inset-0 bg-gradient-overlay" />
+          <p className="text-foreground/70 text-sm uppercase tracking-widest">{heroSlides[currentSlide].tagline}</p>
+          <p className="text-foreground text-2xl md:text-3xl font-semibold">{heroSlides[currentSlide].name}</p>
+        </div>
 
-                  <div className="relative z-10 flex items-center justify-center h-full px-4">
-                    <div className="text-center animate-fade-in-up">
-                      <h1 className="text-5xl md:text-7xl font-bold bg-gradient-hero bg-clip-text text-transparent mb-4">
-                        {t('nav.exploreKerala')}
-                      </h1>
-                      <p className="text-lg md:text-2xl text-foreground/90 mb-2 font-light">
-                        {t('hero.tagline')}
-                      </p>
-                      <p className="text-base md:text-lg text-foreground/70 mb-8 max-w-xl mx-auto">
-                        {t('hero.welcomeMessage')}
-                      </p>
-                      <Button
-                        onClick={() => navigate('/districts')}
-                        size="lg"
-                        className="bg-primary text-primary-foreground hover:bg-primary/90 px-10 py-4 text-lg font-semibold shadow-glow rounded-full"
-                      >
-                        {t('hero.startJourney')}
-                      </Button>
-                    </div>
-                  </div>
-
-                  {/* Slide place name overlay */}
-                  <div className="absolute bottom-24 left-8 z-10">
-                    <p className="text-foreground/60 text-sm uppercase tracking-widest">{slide.tagline}</p>
-                    <p className="text-foreground text-2xl font-semibold">{slide.name}</p>
-                  </div>
-                </div>
-              </CarouselItem>
-            ))}
-          </CarouselContent>
-          <CarouselPrevious className="left-4 bg-background/30 border-none text-foreground hover:bg-background/50" />
-          <CarouselNext className="right-4 bg-background/30 border-none text-foreground hover:bg-background/50" />
-        </Carousel>
+        {/* Blackout overlay for cinematic transition */}
+        <div
+          className="absolute inset-0 bg-black z-30 pointer-events-none"
+          style={{
+            opacity: blackoutOpacity,
+            transition: `opacity ${FADE_DURATION}ms ease-in-out`,
+          }}
+        />
 
         {/* Indicator dots */}
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 flex gap-2">
+        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-40 flex gap-2">
           {heroSlides.map((_, i) => (
-            <div
+            <button
               key={i}
-              className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${
-                i === currentSlide ? "bg-primary w-8" : "bg-foreground/30"
+              onClick={() => setCurrentSlide(i)}
+              className={`h-2.5 rounded-full transition-all duration-300 ${
+                i === currentSlide ? "bg-primary w-8" : "bg-foreground/30 w-2.5 hover:bg-foreground/50"
               }`}
+              aria-label={`Go to slide ${i + 1}`}
             />
           ))}
         </div>
