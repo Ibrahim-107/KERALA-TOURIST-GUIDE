@@ -92,7 +92,11 @@ const Index = () => {
                 height={1080}
                 style={{ willChange: "transform" }}
               />
+              {/* Image tint: subtle teal/green wash + dark gradient for readability */}
+              <div className="absolute inset-0 bg-primary/15 mix-blend-multiply" />
+              <div className="absolute inset-0 bg-accent/10 mix-blend-overlay" />
               <div className="absolute inset-0 bg-gradient-overlay" />
+              <div className="absolute inset-0 bg-black/25" />
             </div>
           );
         })}
@@ -128,9 +132,9 @@ const Index = () => {
           <p className="text-foreground text-2xl md:text-3xl font-semibold">{heroSlides[currentSlide].name}</p>
         </div>
 
-        {/* Blackout overlay for cinematic transition */}
+        {/* Blackout overlay for cinematic transition (behind foreground text) */}
         <div
-          className="absolute inset-0 bg-black z-30 pointer-events-none"
+          className="absolute inset-0 bg-black z-10 pointer-events-none"
           style={{
             opacity: blackoutOpacity,
             transition: `opacity ${FADE_DURATION}ms ease-in-out`,
