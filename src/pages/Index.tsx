@@ -132,9 +132,9 @@ const Index = () => {
           <p className="text-foreground text-2xl md:text-3xl font-semibold">{heroSlides[currentSlide].name}</p>
         </div>
 
-        {/* Blackout overlay for cinematic transition */}
+        {/* Blackout overlay for cinematic transition (behind foreground text) */}
         <div
-          className="absolute inset-0 bg-black z-30 pointer-events-none"
+          className="absolute inset-0 bg-black z-10 pointer-events-none"
           style={{
             opacity: blackoutOpacity,
             transition: `opacity ${FADE_DURATION}ms ease-in-out`,
