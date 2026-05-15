@@ -7,6 +7,7 @@ import Index from "./pages/Index";
 import KeralaDistricts from "./pages/KeralaDistricts";
 import DistrictDetail from "./pages/DistrictDetail";
 import PlaceDetail from "./pages/PlaceDetail";
+import Beaches from "./pages/Beaches";
 import NotFound from "./pages/NotFound";
 import ChatBot from "./components/ChatBot";
 
@@ -23,6 +24,7 @@ const App = () => (
           <Route path="/districts" element={<KeralaDistricts />} />
           <Route path="/district/:districtSlug" element={<DistrictDetail />} />
           <Route path="/place/:placeId" element={<PlaceDetail />} />
+          <Route path="/beaches" element={<Beaches />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
         <ChatBot />
