@@ -97,7 +97,7 @@ export const keralaPlaces: KeralaPlace[] = [
     bestTimeToVisit: "July to October",
     activities: ["Trekking through forest", "Natural pool swimming", "Photography"],
     travelTips: ["Steep trek of about 1km to reach falls", "Not recommended during heavy rain"],
-    imageKey: "athirappilly"
+    imageKey: "soochipara"
   },
   // Backwaters
   {
