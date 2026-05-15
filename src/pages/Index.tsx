@@ -204,8 +204,66 @@ const Index = () => {
 
       {/* Category Sections */}
       {categories.map((cat) => {
-        const places = getPlacesByCategory(cat.key);
         const Icon = cat.icon;
+
+        // Beaches section: featured 3 from full beaches list + See All
+        if (cat.key === "beach") {
+          const featuredBeaches = [
+            keralaBeaches.find((b) => b.id === "kovalam")!,
+            keralaBeaches.find((b) => b.id === "varkala")!,
+            keralaBeaches.find((b) => b.id === "cherai")!,
+          ];
+          return (
+            <section key={cat.key} id={`cat-${cat.key}`} className="py-12 px-4">
+              <div className="max-w-6xl mx-auto">
+                <div className="flex items-center justify-between mb-6">
+                  <h2 className="text-2xl font-bold text-foreground flex items-center gap-2">
+                    <Icon className={`w-7 h-7 ${cat.color}`} />
+                    {t(cat.label)}
+                  </h2>
+                  <Button
+                    variant="ghost"
+                    onClick={() => navigate("/beaches")}
+                    className="text-primary hover:text-primary hover:bg-primary/10"
+                  >
+                    See All <ChevronRight className="w-4 h-4 ml-1" />
+                  </Button>
+                </div>
+                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                  {featuredBeaches.map((beach) => (
+                    <Card
+                      key={beach.id}
+                      className="overflow-hidden bg-gradient-card hover:shadow-glow transition-all duration-300 cursor-pointer group"
+                      onClick={() => navigate("/beaches")}
+                    >
+                      <div className="aspect-video overflow-hidden">
+                        <img
+                          src={beach.image}
+                          alt={beach.name}
+                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                          loading="lazy"
+                          width={1024}
+                          height={640}
+                        />
+                      </div>
+                      <div className="p-4">
+                        <h3 className="text-lg font-semibold text-foreground mb-2">{beach.name}</h3>
+                        <p className="text-muted-foreground text-sm line-clamp-2 mb-3">{beach.description}</p>
+                        <div className="flex items-center text-accent text-sm">
+                          <MapPin className="w-3 h-3 mr-1" />
+                          {beach.district}
+                          <ChevronRight className="w-4 h-4 ml-auto text-primary opacity-0 group-hover:opacity-100 transition-opacity" />
+                        </div>
+                      </div>
+                    </Card>
+                  ))}
+                </div>
+              </div>
+            </section>
+          );
+        }
+
+        const places = getPlacesByCategory(cat.key);
         return (
           <section key={cat.key} id={`cat-${cat.key}`} className="py-12 px-4">
             <div className="max-w-6xl mx-auto">
