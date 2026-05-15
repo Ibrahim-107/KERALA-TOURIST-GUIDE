@@ -261,9 +261,14 @@ import kovalam from "@/assets/kerala/kovalam-beach.jpg";
 import athirappilly from "@/assets/kerala/athirappilly-falls.jpg";
 import fortkochi from "@/assets/kerala/fort-kochi.jpg";
 import padmanabhaswamy from "@/assets/kerala/padmanabhaswamy-temple.jpg";
+import wayanad from "@/assets/kerala/wayanad.jpg";
+import soochipara from "@/assets/kerala/soochipara.jpg";
+import kumarakom from "@/assets/kerala/kumarakom.jpg";
+import marari from "@/assets/beaches/marari.jpg";
 
 const imageMap: Record<string, string> = {
   munnar, alleppey, varkala, kovalam, athirappilly, fortkochi, padmanabhaswamy,
+  wayanad, soochipara, kumarakom, marari,
 };
 function getImageForPlace(key: string) {
   return imageMap[key] || munnar;
