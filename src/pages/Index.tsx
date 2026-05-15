@@ -181,7 +181,7 @@ const Index = () => {
           </h2>
           <div className="grid md:grid-cols-5 gap-4">
             {categories.map((cat) => {
-              const places = getPlacesByCategory(cat.key);
+              const count = cat.key === "beach" ? keralaBeaches.length : getPlacesByCategory(cat.key).length;
               const Icon = cat.icon;
               return (
                 <Card
@@ -194,7 +194,7 @@ const Index = () => {
                 >
                   <Icon className={`w-10 h-10 mx-auto mb-3 ${cat.color} group-hover:scale-110 transition-transform`} />
                   <h3 className="font-semibold text-foreground text-sm">{t(cat.label)}</h3>
-                  <p className="text-muted-foreground text-xs mt-1">{places.length} places</p>
+                  <p className="text-muted-foreground text-xs mt-1">{count} places</p>
                 </Card>
               );
             })}
