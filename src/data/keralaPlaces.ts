@@ -47,7 +47,7 @@ export const keralaPlaces: KeralaPlace[] = [
     bestTimeToVisit: "November to February",
     activities: ["Relaxation", "Village walks", "Fishing with locals", "Bird watching"],
     travelTips: ["Ideal for couples and solo travelers", "Try coconut toddy from local shops"],
-    imageKey: "kovalam"
+    imageKey: "marari"
   },
   // Hill Stations
   {
@@ -60,7 +60,7 @@ export const keralaPlaces: KeralaPlace[] = [
     bestTimeToVisit: "September to May",
     activities: ["Tea plantation tour", "Trekking", "Eravikulam National Park", "Mattupetty Dam", "Photo walks"],
     travelTips: ["Carry warm clothing", "Book hotels in advance during peak season", "Try fresh tea from plantations"],
-    imageKey: "munnar"
+    imageKey: "wayanad"
   },
   {
     id: "wayanad",
@@ -122,7 +122,7 @@ export const keralaPlaces: KeralaPlace[] = [
     bestTimeToVisit: "November to February",
     activities: ["Bird watching", "Houseboat cruise", "Fishing", "Ayurvedic treatments", "Village walks"],
     travelTips: ["Visit early morning for bird watching", "Combine with Alleppey backwaters trip"],
-    imageKey: "alleppey"
+    imageKey: "kumarakom"
   },
   // Temples & Culture
   {
