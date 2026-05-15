@@ -6,6 +6,7 @@ import { useTranslation } from "react-i18next";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
 import { MapPin, Mountain, Droplets, Waves, Landmark, ChevronRight } from "lucide-react";
 import { getPlacesByCategory } from "@/data/keralaPlaces";
+import { keralaBeaches } from "@/data/keralaBeaches";
 
 // Kerala landmark images
 import munnarTea from "@/assets/kerala/munnar-tea.jpg";
